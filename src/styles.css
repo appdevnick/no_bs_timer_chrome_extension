@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg-color: #f8f9fa;
   --container-bg: white;
   --text-color: #2c3e50;
@@ -7,37 +8,74 @@
   --timer-bg: #f8f9fa;
   --input-bg: white;
   --shadow-color: rgba(0,0,0,0.1);
-}
-
-[data-theme="dark"] {
-  --bg-color: #1a1a1a;
-  --container-bg: #2d2d2d;
-  --text-color: #e1e1e1;
-  --text-secondary: #a0a0a0;
-  --border-color: #404040;
-  --timer-bg: #222222;
-  --input-bg: #333333;
-  --shadow-color: rgba(0,0,0,0.3);
+  --accent-blue: #3498db;
+  --accent-orange: #e67e22;
+  --accent-highlight: #3498db;
+  --btn-bg: #f1f3f5;
+  --btn-hover: #e9ecef;
+  --input-focus-border: #3498db;
+  --input-active-bg: #f0f8ff;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  background-color: var(--container-bg);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 body {
   width: 320px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+/* Theme variables */
+.light-theme {
+  color-scheme: light;
+  --bg-color: #f4f6f9;
+  --container-bg: #ffffff;
+  --text-color: #2c3e50;
+  --text-secondary: #6c757d;
+  --border-color: #3498db;
+  --timer-bg: #ecf0f1;
+  --input-bg: #f8f9fa;
+  --accent-blue: #3498db;
+  --accent-orange: #e67e22;
+  --accent-highlight: #3498db;
+  --btn-bg: #f1f3f5;
+  --btn-hover: #3498db;
+}
+
+/* Dark theme when checkbox is checked */
+.theme-toggle-input:checked ~ * {
+  --bg-color: #1c2331;
+  --container-bg: #2c3e50;
+  --text-color: #ecf0f1;
+  --text-secondary: #bdc3c7;
+  --border-color: #4ecdc4;
+  --timer-bg: #263238;
+  --input-bg: #2c3e50;
+  --accent-blue: #4ecdc4;
+  --accent-orange: #ff6b6b;
+  --accent-highlight: #4ecdc4;
+  --btn-bg: #34495e;
+  --btn-hover: #4ecdc4;
 }
 
 .container {
   padding: 20px;
   background-color: var(--container-bg);
-  border-radius: 12px;
   box-shadow: 0 2px 8px var(--shadow-color);
+  color: var(--text-color);
 }
 
 .header {
@@ -53,94 +91,70 @@ body {
   margin: 0;
 }
 
-/* Theme Switch Styles */
-.theme-switch-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.theme-switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
-}
-
-.theme-switch input {
+/* Theme Toggle Styles */
+.theme-toggle-input {
   display: none;
 }
 
-.slider {
-  background-color: #333;
-  bottom: 0;
+.theme-switch-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.theme-toggle {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  border-bottom: 2px solid var(--accent-highlight);
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
   left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-highlight);
+}
+
+.theme-toggle svg {
   position: absolute;
-  right: 0;
   top: 0;
-  transition: .4s;
-  border-radius: 34px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s ease;
 }
 
-.slider:before {
-  background-color: #fff;
-  bottom: 4px;
-  content: "";
-  height: 26px;
-  left: 4px;
-  position: absolute;
-  transition: .4s;
-  width: 26px;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #66bb6a;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.slider svg {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.slider .sun {
-  left: 6px;
-  stroke: #fff;
+.theme-toggle .icon-sun {
   opacity: 1;
+  stroke: var(--text-color);
 }
 
-.slider .moon {
-  right: 6px;
-  stroke: #fff;
+.theme-toggle .icon-moon {
+  opacity: 0;
+  stroke: var(--text-color);
+}
+
+/* Icon toggle */
+.theme-toggle-input:checked ~ .container .theme-toggle .icon-sun {
   opacity: 0;
 }
 
-input:checked + .slider .sun {
-  opacity: 0;
-}
-
-input:checked + .slider .moon {
+.theme-toggle-input:checked ~ .container .theme-toggle .icon-moon {
   opacity: 1;
 }
 
-/* Timer Display */
 .timer-display {
   background-color: var(--timer-bg);
-  border-radius: 8px;
-  padding: 20px;
-  margin: 15px 0;
+  padding: 10px;
   text-align: center;
-  font-size: 2.5em;
-  font-weight: 600;
+  font-size: 2em;
   color: var(--text-color);
-  font-variant-numeric: tabular-nums;
+  margin-bottom: 30px;
 }
 
 .timer-display .separator {
@@ -166,18 +180,18 @@ input:checked + .slider .moon {
 .input-group input {
   width: 100%;
   padding: 8px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border: 2px solid var(--border-color);
   text-align: center;
   font-size: 1em;
   background-color: var(--input-bg);
   color: var(--text-color);
-  transition: border-color 0.2s;
+  transition: border-color 0.3s ease;
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 5px var(--accent-blue);
 }
 
 .input-group label {
@@ -196,47 +210,31 @@ input:checked + .slider .moon {
   flex: 1;
   padding: 10px;
   border: none;
-  border-radius: 6px;
   font-size: 0.9em;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.1s, opacity 0.2s;
+  transition: transform 0.1s, opacity 0.2s, background-color 0.3s ease;
+  background-color: var(--btn-bg);
+  color: var(--text-color);
 }
 
-.btn:active {
-  transform: scale(0.98);
+.btn:hover {
+  background-color: var(--btn-hover);
 }
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-start {
-  background-color: #4CAF50;
+#start-btn {
+  background-color: var(--accent-blue);
   color: white;
 }
 
-.btn-start:hover {
-  background-color: #45a049;
-}
-
-.btn-pause {
-  background-color: #f44336;
+#pause-btn {
+  background-color: var(--accent-orange);
   color: white;
 }
 
-.btn-pause:hover {
-  background-color: #da190b;
-}
-
-.btn-reset {
-  background-color: #2196F3;
-  color: white;
-}
-
-.btn-reset:hover {
-  background-color: #0d8bf2;
+#reset-btn {
+  background-color: var(--btn-bg);
+  color: var(--text-color);
 }
 
 .notifications {
@@ -253,17 +251,19 @@ input:checked + .slider .moon {
 .sound-select {
   width: 100%;
   padding: 8px;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   border-radius: 6px;
   background-color: var(--input-bg);
   color: var(--text-color);
   font-size: 0.9em;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .sound-select:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 5px var(--accent-blue);
 }
 
 /* Remove spinner buttons from number inputs */

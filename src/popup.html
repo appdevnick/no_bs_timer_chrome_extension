@@ -3,30 +3,29 @@
 <head>
   <title>Simple Timer</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="script.js"></script>
 </head>
-<body>
+<body class="light-theme">
+  <input type="checkbox" id="theme-toggle" class="theme-toggle-input">
   <div class="container">
     <div class="header">
       <h1 class="title">Timer</h1>
       <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-          <input type="checkbox" id="checkbox" />
-          <div class="slider round">
-            <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <line x1="12" y1="1" x2="12" y2="3"/>
-              <line x1="12" y1="21" x2="12" y2="23"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-              <line x1="1" y1="12" x2="3" y2="12"/>
-              <line x1="21" y1="12" x2="23" y2="12"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </div>
+        <label for="theme-toggle" class="theme-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sun">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-moon">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
         </label>
       </div>
     </div>
@@ -40,26 +39,26 @@
     
     <div class="controls">
       <div class="input-group">
-        <input type="number" id="hours-input" min="0" max="23" placeholder="00">
-        <label>Hours</label>
+        <label for="hours-input">Hours</label>
+        <input type="number" id="hours-input" name="hours" min="0" max="23" value="0">
       </div>
       <div class="input-group">
-        <input type="number" id="minutes-input" min="0" max="59" placeholder="00">
-        <label>Min</label>
+        <label for="minutes-input">Minutes</label>
+        <input type="number" id="minutes-input" name="minutes" min="0" max="59" value="5">
       </div>
       <div class="input-group">
-        <input type="number" id="seconds-input" min="0" max="59" placeholder="00">
-        <label>Sec</label>
+        <label for="seconds-input">Seconds</label>
+        <input type="number" id="seconds-input" name="seconds" min="0" max="59" value="0">
       </div>
     </div>
     
     <div class="buttons">
-      <button id="start-btn" class="btn btn-start">Start</button>
-      <button id="pause-btn" class="btn btn-pause">Pause</button>
-      <button id="reset-btn" class="btn btn-reset">Reset</button>
+      <button id="start-btn" class="btn">Start</button>
+      <button id="pause-btn" class="btn">Pause</button>
+      <button id="reset-btn" class="btn">Reset</button>
     </div>
     
-    <div class="notifications">
+    <div class="sound-controls">
       <label for="notification-sound">Notification Sound</label>
       <select id="notification-sound" class="sound-select">
         <option value="default">Default Beep</option>
@@ -69,7 +68,5 @@
       </select>
     </div>
   </div>
-  
-  <script src="timer.js"></script>
 </body>
 </html>
